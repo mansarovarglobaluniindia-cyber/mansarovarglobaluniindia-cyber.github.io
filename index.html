@@ -9,7 +9,7 @@
         :root { --mgu-red: #d9534f; --mgu-blue: #2c3e50; --bg: #f4f7f6; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); height: 100vh; display: flex; overflow: hidden; }
 
-        /* --- LOGIN PAGE --- */
+        /* --- LOGIN PAGE (Strict Logic) --- */
         #login-page { height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; position: fixed; z-index: 1000; background: #fff; top:0; left:0; }
         .login-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 550px; border: 1px solid #eee; text-align: center; }
         .login-card img { width: 180px; margin-bottom: 25px; }
@@ -19,6 +19,7 @@
         .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         .input-group i { position: absolute; right: 12px; top: 14px; color: #999; }
         .login-btn { padding: 10px; background: var(--mgu-red); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; width: 100px; height: 40px; }
+        #err { color: #d9534f; font-size: 13px; font-weight: bold; margin-top: 20px; display: none; background: #f2dede; padding: 10px; border-radius: 4px; border: 1px solid #ebccd1; }
 
         /* --- SIDEBAR --- */
         .sidebar { width: 320px; background: var(--mgu-blue); color: white; display: flex; flex-direction: column; }
@@ -34,35 +35,34 @@
         .profile-corner { display: flex; align-items: center; gap: 15px; }
         .profile-corner img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--mgu-red); object-fit: cover; }
         .container { padding: 20px; overflow-y: auto; flex: 1; }
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 950px; margin: 0 auto; }
+        .card { background: white; padding: 35px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 950px; margin: 0 auto; }
         .hidden { display: none; }
 
-        /* --- PROFESSIONAL ID CARD (Details Included) --- */
-        .id-card-wrap { width: 189px; height: 302px; border: 1px solid #000; margin: 20px auto; border-radius: 8px; background: #fff; overflow: hidden; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .id-card-top { background: var(--mgu-blue); color: #fff; padding: 8px 5px; text-align: center; }
-        .id-card-top img { width: 35px; }
-        .id-card-top h4 { margin: 2px 0; font-size: 8px; line-height: 1; text-transform: uppercase; }
-        .id-photo { width: 75px; height: 90px; border: 2px solid var(--mgu-red); margin: 8px auto; overflow: hidden; }
-        .id-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .id-details { text-align: center; padding: 0 5px; }
-        .id-details h2 { margin: 2px 0; font-size: 12px; color: var(--mgu-blue); text-transform: uppercase; }
-        .id-details p { margin: 1px 0; font-size: 8px; color: #333; font-weight: bold; }
-        .barcode-box { width: 85%; margin: 8px auto; text-align: center; }
-        .barcode-img { width: 100%; height: 25px; background: url('https://bwipjs-api.metafloor.com/?bcid=code128&text=2021MGU1089&scale=2&rotate=N&includetext'); background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .id-footer { position: absolute; bottom: 0; width: 100%; height: 8px; background: var(--mgu-red); }
-
-        /* --- BIG REGISTRATION SLIP --- */
+        /* --- REGISTRATION SLIP --- */
         .slip-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
         .slip-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
         .slip-table td { border: 1px solid #999; padding: 10px; }
         .label { background: #f0f0f0; font-weight: bold; width: 25%; }
-        .undertaking { text-align: left; font-size: 11px; line-height: 1.6; border-top: 1px dashed #333; padding-top: 15px; }
+        .undertaking { font-size: 11px; line-height: 1.6; border-top: 1px dashed #333; padding-top: 15px; text-align: left; }
 
-        /* --- OTHERS --- */
+        /* --- ID CARD --- */
+        .id-card-wrap { width: 189px; height: 302px; border: 1px solid #000; margin: 20px auto; border-radius: 8px; background: #fff; overflow: hidden; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .id-card-top { background: var(--mgu-blue); color: #fff; padding: 8px 5px; text-align: center; }
+        .id-card-top img { width: 35px; }
+        .id-card-top h4 { margin: 2px 0; font-size: 8px; text-transform: uppercase; }
+        .id-photo { width: 75px; height: 90px; border: 2px solid var(--mgu-red); margin: 10px auto; overflow: hidden; }
+        .id-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .id-details { text-align: center; padding: 0 5px; }
+        .id-details h2 { margin: 2px 0; font-size: 11px; color: var(--mgu-blue); text-transform: uppercase; }
+        .id-details p { margin: 1px 0; font-size: 8px; color: #333; font-weight: bold; }
+        .barcode-img { width: 85%; height: 35px; margin: 10px auto; background: url('https://bwipjs-api.metafloor.com/?bcid=code128&text=2021MGU1089&scale=2&rotate=N&includetext'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+        .id-footer { position: absolute; bottom: 0; width: 100%; height: 8px; background: var(--mgu-red); }
+
+        /* --- MISC --- */
         .compulsory { color: #d9534f; font-weight: bold; font-size: 11px; }
         .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
         .btn-action { background: var(--mgu-red); color: white; padding: 12px 35px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; }
-        .notice-box { text-align: center; padding: 40px; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; }
+        .result-box { text-align: center; padding: 40px; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; }
     </style>
 </head>
 <body>
@@ -73,12 +73,13 @@
             <h3>Student Portal Login</h3>
             <div class="login-flex">
                 <div class="input-fields">
-                    <div class="input-group"><input type="text" id="uid" placeholder="Registration ID"><i class="fa fa-user"></i></div>
-                    <div class="input-group"><input type="password" id="pass" placeholder="Password"><i class="fa fa-lock"></i></div>
-                    <div class="input-group"><input type="text" id="mob" placeholder="Mobile Number"><i class="fa fa-phone"></i></div>
+                    <div class="input-group"><input type="text" id="log-uid" placeholder="Registration ID"><i class="fa fa-user"></i></div>
+                    <div class="input-group"><input type="password" id="log-pass" placeholder="Password"><i class="fa fa-lock"></i></div>
+                    <div class="input-group"><input type="text" id="log-mob" placeholder="Mobile Number"><i class="fa fa-phone"></i></div>
                 </div>
-                <button class="login-btn" onclick="login()">Login</button>
+                <button class="login-btn" onclick="checkLogin()">Login</button>
             </div>
+            <p id="err"><i class="fa fa-exclamation-circle"></i> Invalid Login Credentials!</p>
         </div>
     </div>
 
@@ -98,7 +99,7 @@
 
         <div class="main-content">
             <div class="top-nav">
-                <h3 id="current-tab">Welcome</h3>
+                <h3 id="current-tab">Dashboard</h3>
                 <div class="profile-corner">
                     <div class="profile-info"><strong>ANITA VERMA</strong><br><span>ID: 2021MGU1089</span></div>
                     <img src="https://i.ibb.co/RGZmWGGq/student-photo.png">
@@ -108,6 +109,32 @@
             <div class="container">
                 <div id="welcome" class="content">
                     <div class="card" style="text-align:center;"><h2>Student ERP Portal</h2><p>Please select a service from the sidebar.</p></div>
+                </div>
+
+                <div id="reg-slip-sec" class="content hidden">
+                    <div class="card">
+                        <div class="slip-header">
+                            <img src="https://mguindia.in/images/logo.png" width="90">
+                            <div style="text-align:center; flex:1;">
+                                <h2 style="margin:0;">MANSAROVAR GLOBAL UNIVERSITY</h2>
+                                <p style="font-size:10px;">Billkisganj, Sehore, Madhya Pradesh-466001</p>
+                            </div>
+                        </div>
+                        <h4 style="text-align:center; background:#f0f0f0; padding:10px; border:1px solid #333;">CANDIDATE REGISTRATION SLIP</h4>
+                        <table class="slip-table">
+                            <tr><td class="label">Registration No</td><td>23378</td><td class="label">Date</td><td>30 Oct 2021</td></tr>
+                            <tr><td class="label">Candidate Name</td><td colspan="3">ANITA VERMA</td></tr>
+                            <tr><td class="label">Course / Stream</td><td>MA / ENGLISH</td><td class="label">Aadhar No</td><td>523407372716</td></tr>
+                            <tr><td class="label">Father's Name / Husband Name</td><td>JAYPRAKASH</td><td class="label">Mother's Name</td><td>CHANDRA JYOTI</td></tr>
+                        </table>
+                        <div class="undertaking">
+                            <h5 style="margin:0 0 10px 0; color:var(--mgu-red);">UNDERTAKING & GUIDELINES:</h5>
+                            <p>1. I will attend all classes regularly and maintain at least 75% attendance.<br>
+                            2. I will conduct myself in a disciplined manner inside and outside the campus.<br>
+                            3. I will not indulge in any form of ragging. Ragging is a punishable offence.<br>
+                            4. Please clear all academic "No Dues" from the account section before results.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="id-card-sec" class="content hidden">
@@ -120,44 +147,17 @@
                                 <p>Enroll: 2021MGU1089</p>
                                 <p>Course: MA (English)</p>
                                 <p>DOB: 30 Jan 1979</p>
-                                <p>Mob: 8617079927</p>
                             </div>
-                            <div class="barcode-box"><div class="barcode-img"></div><span style="font-size:7px; font-weight:bold;">2021MGU1089</span></div>
+                            <div class="barcode-img"></div>
                             <div class="id-footer"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="reg-slip-sec" class="content hidden">
-                    <div class="card">
-                        <div class="slip-header">
-                            <img src="https://mguindia.in/images/logo.png" width="90">
-                            <div style="text-align:center; flex:1;">
-                                <h2 style="margin:0; font-size:22px;">MANSAROVAR GLOBAL UNIVERSITY</h2>
-                                <p style="font-size:11px;">Billkisganj, Sehore, Madhya Pradesh-466001</p>
-                            </div>
-                        </div>
-                        <h4 style="text-align:center; background:#f0f0f0; padding:10px; border:1px solid #333;">CANDIDATE REGISTRATION SLIP</h4>
-                        <table class="slip-table">
-                            <tr><td class="label">Registration No</td><td>23378</td><td class="label">Date</td><td>30 Oct 2021</td></tr>
-                            <tr><td class="label">Candidate Name</td><td colspan="3">ANITA VERMA</td></tr>
-                            <tr><td class="label">Course / Stream</td><td>MA / ENGLISH</td><td class="label">Aadhar No</td><td>523407372716</td></tr>
-                            <tr><td class="label">Father's Name / Husband</td><td>JAYPRAKASH</td><td class="label">Mother's Name</td><td>CHANDRA JYOTI</td></tr>
-                        </table>
-                        <div class="undertaking">
-                            <h4 style="margin:0 0 10px 0; color:var(--mgu-red);">UNDERTAKING & GUIDELINES:</h4>
-                            <p>1. I will maintain at least 75% attendance in each semester.<br>
-                            2. I will conduct myself in a disciplined manner inside the campus.<br>
-                            3. I will not indulge in any form of ragging; it is a punishable offence.<br>
-                            4. Please clear academic dues to access the examination marksheet.</p>
                         </div>
                     </div>
                 </div>
 
                 <div id="exam-sec" class="content hidden">
                     <div class="card">
-                        <div class="notice-box">
-                            <i class="fa fa-info-circle" style="font-size:30px; margin-bottom:10px;"></i>
+                        <div class="result-box">
+                            <i class="fa fa-info-circle" style="font-size:35px; margin-bottom:15px;"></i>
                             <h3>Results Notification</h3>
                             <p>Results are being processed and will be available soon. <strong>Please ensure all academic "No Dues" are cleared</strong> to view your marksheet.</p>
                         </div>
@@ -166,13 +166,13 @@
 
                 <div id="req-sec" class="content hidden">
                     <div class="card">
-                        <h3>Apply for Official Documents</h3>
+                        <h3>Request Documents</h3>
                         <div class="upload-grid" style="grid-template-columns: 1fr;">
                             <label><input type="checkbox"> Transfer Certificate (TC)</label>
                             <label><input type="checkbox"> Migration Certificate</label>
-                            <label><input type="checkbox"> Degree Certificate / Marksheet</label>
+                            <label><input type="checkbox"> Degree Certificate / Marksheet Request</label>
                         </div>
-                        <button class="btn-action" onclick="alert('Sent to University Admin!')">Submit Request</button>
+                        <button class="btn-action" onclick="alert('Sent to University email.')">Submit Request</button>
                     </div>
                 </div>
 
@@ -186,7 +186,7 @@
                             <div style="display:flex; flex-direction:column;">12th Marksheet <span class="compulsory">(Compulsory)</span><input type="file"></div>
                             <div style="display:flex; flex-direction:column;">UG Marksheet <span class="compulsory">(Compulsory)</span><input type="file"></div>
                         </div>
-                        <button class="btn-action" onclick="alert('Documents Uploaded!')">Final Submit</button>
+                        <button class="btn-action" onclick="alert('Submission successful!')">Final Submit</button>
                     </div>
                 </div>
             </div>
@@ -194,10 +194,18 @@
     </div>
 
     <script>
-        function login() {
-            if(document.getElementById('uid').value === "2021MGU1089" && document.getElementById('pass').value === "21Anita@79") {
+        function checkLogin() {
+            const u = document.getElementById('log-uid').value;
+            const p = document.getElementById('log-pass').value;
+            const m = document.getElementById('log-mob').value;
+            
+            // Strict Verification
+            if(u === "2021MGU1089" && p === "21Anita@79" && m === "8617079927") {
                 document.getElementById('login-page').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'flex';
+                document.getElementById('err').style.display = 'none';
+            } else {
+                document.getElementById('err').style.display = 'block';
             }
         }
         function drop() { var d = document.getElementById("drop-menu"); d.style.display = (d.style.display === "block") ? "none" : "block"; }
