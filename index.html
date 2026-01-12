@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGU Student ERP Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary-red: #d9534f; --dark-blue: #2c3e50; --bg-light: #f5f7fb; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: var(--bg-light); }
+
+        /* --- Login Styles --- */
+        #login-page { display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.1); width: 450px; text-align: left; position: relative; }
+        .logo-container { text-align: center; margin-bottom: 25px; }
+        .logo-container img { width: 130px; }
+        .login-card h2 { font-weight: 500; margin-bottom: 30px; color: #333; }
+        .input-group { position: relative; margin-bottom: 20px; width: 65%; }
+        .input-group i { position: absolute; right: 15px; top: 12px; color: #999; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; background: #fafafa; }
+        .login-btn { width: 30%; height: 45px; background: var(--primary-red); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 18px; position: absolute; right: 40px; top: 185px; }
+        .error { color: red; font-size: 13px; display: none; margin-top: 10px; }
+
+        /* --- Dashboard Styles --- */
+        #dashboard-page { display: none; height: 100vh; flex-direction: row; }
+        .sidebar { width: 260px; background: var(--dark-blue); color: white; display: flex; flex-direction: column; }
+        .sidebar h3 { padding: 20px; text-align: center; border-bottom: 1px solid #3e5871; margin: 0; }
+        .sidebar a { padding: 15px 25px; color: #bdc3c7; text-decoration: none; border-bottom: 1px solid #34495e; cursor: pointer; }
+        .sidebar a:hover { background: #34495e; color: white; border-left: 5px solid var(--primary-red); }
+        
+        .main-content { flex: 1; overflow-y: auto; padding: 25px; }
+        .top-header { background: white; padding: 15px 30px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .profile-box { text-align: right; font-size: 14px; line-height: 1.5; }
+
+        /* --- ID Card Styles --- */
+        .id-card { width: 400px; background: white; border: 2px solid var(--dark-blue); border-radius: 15px; padding: 20px; position: relative; margin: 20px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .id-header { text-align: center; border-bottom: 2px solid var(--primary-red); padding-bottom: 10px; margin-bottom: 15px; }
+        .id-body { display: flex; gap: 15px; }
+        .photo-space { width: 100px; height: 120px; border: 1px dashed #ccc; display: flex; align-items: center; text-align: center; font-size: 12px; background: #f9f9f9; }
+        .id-details p { margin: 5px 0; font-size: 14px; }
+        
+        .content-section { display: none; margin-top: 20px; background: white; padding: 25px; border-radius: 8px; min-height: 400px; }
+        .active-section { display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="login-card">
+            <div class="logo-container">
+                <img src="https://mguindia.in/images/logo.png" alt="MGU Logo">
+            </div>
+            <h2>Student Login</h2>
+            <div class="input-group">
+                <input type="text" id="userid" placeholder="User Id">
+                <i class="fa fa-user"></i>
+            </div>
+            <button class="login-btn" onclick="checkLogin()">Login</button>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password">
+                <i class="fa fa-lock"></i>
+            </div>
+            <div class="input-group">
+                <input type="text" id="mobile" placeholder="Mobile No">
+                <i class="fa fa-phone"></i>
+            </div>
+            <p id="err" class="error">Galt details! Sahi Roll No aur Password dalein.</p>
+        </div>
+    </div>
+
+    <div id="dashboard-page">
+        <div class="sidebar">
+            <h3>MGU ERP</h3>
+            <a onclick="show('admission')"><i class="fa fa-user-graduate"></i> 1. Admission (ID Card)</a>
+            <a onclick="show('exam')"><i class="fa fa-file-invoice"></i> 2. Examination (Result)</a>
+            <a onclick="alert('Feature Coming Soon')"><i class="fa fa-file-alt"></i> 3. Request Document</a>
+            <a onclick="alert('Feature Coming Soon')"><i class="fa fa-upload"></i> 4. Upload Synopsis</a>
+            <a href="javascript:location.reload()" style="color: #ff7675;"><i class="fa fa-sign-out-alt"></i> 5. Logout</a>
+        </div>
+
+        <div class="main-content">
+            <div class="top-header">
+                <h3>Welcome to Dashboard</h3>
+                <div class="profile-box">
+                    <strong>Student Name:</strong> RAHUL KUMAR<br>
+                    <strong>Enrollment:</strong> 2021MGU3147<br>
+                    <strong>Course:</strong> MA
+                </div>
+            </div>
+
+            <div id="admission" class="content-section active-section">
+                <h2>Student Digital ID Card</h2>
+                <div class="id-card">
+                    <div class="id-header">
+                        <img src="https://mguindia.in/images/logo.png" width="60">
+                        <h4 style="margin:5px 0; color: var(--dark-blue);">MANSAROVAR GLOBAL UNIVERSITY</h4>
+                    </div>
+                    <div class="id-body">
+                        <div class="photo-space">Passport Photo Here</div>
+                        <div class="id-details">
+                            <p><strong>Name:</strong> RAHUL KUMAR</p>
+                            <p><strong>Roll No:</strong> 2021MGU3147</p>
+                            <p><strong>Course:</strong> MA</p>
+                            <p><strong>Session:</strong> 2021-2023</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 10px; text-align: right;">
+                        <p>Principal's Signature</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exam" class="content-section">
+                <h2>Examination Result</h2>
+                <p>M.A. First Semester Result</p>
+                <hr>
+                <iframe src="https://drive.google.com/file/d/1aB2wIVTWN2Mbo4rqDDTVNroNbQKw4Mj_/preview" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const u = document.getElementById('userid').value;
+            const p = document.getElementById('password').value;
+            const m = document.getElementById('mobile').value;
+
+            if(u === "2021MGU3147" && p === "mgu3147" && m === "6206772327") {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('dashboard-page').style.display = 'flex';
+            } else {
+                document.getElementById('err').style.display = 'block';
+            }
+        }
+
+        function show(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(id).classList.add('active-section');
+        }
+    </script>
+</body>
+</html>
