@@ -11,7 +11,7 @@
 
         /* --- LOGIN PAGE --- */
         #login-page { height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; position: fixed; z-index: 1000; background: #fff; top:0; left:0; }
-        .login-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 550px; border: 1px solid #eee; text-align: center; }
+        .login-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 550px; border: 1px solid #eee; text-align: center; position: relative; }
         .login-card img { width: 150px; margin-bottom: 25px; }
         .login-flex { display: flex; align-items: center; gap: 20px; justify-content: center; }
         .input-fields { flex: 1; display: flex; flex-direction: column; gap: 15px; }
@@ -20,6 +20,28 @@
         .input-group i { position: absolute; right: 12px; top: 14px; color: #999; }
         .login-btn { padding: 10px; background: var(--mgu-red); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; width: 100px; height: 40px; }
         #err-msg { color: #d9534f; font-size: 12px; font-weight: bold; margin-top: 15px; display: none; background: #f2dede; padding: 10px; border-radius: 4px; }
+
+        /* UPGRADED LOGIN UI: Home Button */
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .home-btn:hover {
+            background: #f9f9f9;
+            border-color: #ccc;
+        }
 
         /* --- DASHBOARD LAYOUT --- */
         .sidebar { width: 320px; background: var(--mgu-blue); color: white; display: flex; flex-direction: column; overflow-y: auto; }
@@ -83,6 +105,10 @@
 
     <div id="login-page">
         <div class="login-card">
+            <a href="https://mguindia.com" class="home-btn">
+                <i class="fa fa-arrow-left"></i> Home
+            </a>
+            
             <img src="https://i.ibb.co/39PPJWNB/mgu-logo.png" alt="MGU Logo">
             <h3>Student Portal Login</h3>
             <div class="login-flex">
